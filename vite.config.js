@@ -10,7 +10,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         target:
-          "https://walkthisway-hyd-bus-stop-audit-coiw.vercel.app",
+          "https://walkthisway-hyd.vercel.app",
 
         changeOrigin: true,
       },

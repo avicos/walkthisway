@@ -8,6 +8,9 @@ import styles from "./App.module.css";
 import Header from "./components/Header";
 import Report from "./components/Report";
 
+import useLiveLocation from "./hooks/useLiveLocation";
+import useLiveBeacons from "./hooks/useLiveBeacons";
+
 function App() {
   const location = useLocation();
   const { audits, auditCount } = useAudits();
@@ -17,6 +20,15 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [recenterRequest, setRecenterRequest] = useState(0);
   const [reportOpen, setReportOpen] = useState(false);
+
+  const { location: liveLocation, error: liveLocationError } =
+    useLiveLocation(true);
+
+  const liveBeacons = useLiveBeacons(true);
+
+  console.log("MY LOCATION:", liveLocation);
+  console.log("LIVE BEACONS:", liveBeacons);
+  console.log("LOCATION ERROR:", liveLocationError);
 
   return (
     <div className={styles.app}>

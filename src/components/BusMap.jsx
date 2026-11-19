@@ -17,6 +17,7 @@ export default function BusMap({
   setIsAddingStop,
   audits,
   recenterRequest,
+  liveLocation,
 }) {
   return (
     <MapContainer
@@ -60,6 +61,16 @@ export default function BusMap({
 
           <Circle center={[userLocation.lat, userLocation.lon]} radius={100} />
         </>
+      )}
+      {/* Live location */}
+      {liveLocation && (
+        <Marker position={[liveLocation.lat, liveLocation.lon]} icon={userIcon}>
+          <Popup>
+            Live Location
+            <br />
+            Accuracy: {Math.round(liveLocation.accuracy)}m
+          </Popup>
+        </Marker>
       )}
 
       {/* Audited bus stops */}

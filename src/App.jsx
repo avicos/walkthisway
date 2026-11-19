@@ -49,6 +49,7 @@ function App() {
           setIsAddingStop={setIsAddingStop}
           audits={audits}
           recenterRequest={recenterRequest}
+            liveLocation={liveLocation}
         />
 
         <Menu

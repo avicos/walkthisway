@@ -19,7 +19,7 @@ export default function Header({ audits, onSelect, auditCount }) {
   return (
     <header className={styles.header}>
       <img
-        src="/logo.png"
+        src="/logo1.png"
         alt="Walk This Way"
         className={styles.logo}
       />

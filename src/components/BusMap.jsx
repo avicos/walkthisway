@@ -12,7 +12,6 @@ export default function BusMap({
   setSelectedStop,
   selectedAudit,
   setSelectedAudit,
-  userLocation,
   isAddingStop,
   setIsAddingStop,
   audits,
@@ -40,37 +39,31 @@ export default function BusMap({
         subdomains="abcd"
       />
 
-      <FlyToUser userLocation={userLocation} />
+      <FlyToUser userLocation={liveLocation} />
 
       <RecenterMap
-        userLocation={userLocation}
+        userLocation={liveLocation}
         recenterRequest={recenterRequest}
       />
 
       <FlyToStop selectedStop={selectedAudit} />
 
-      {/* User location */}
-      {userLocation && (
+      {/* Live user location */}
+      {liveLocation && (
         <>
           <Marker
-            position={[userLocation.lat, userLocation.lon]}
+            position={[liveLocation.lat, liveLocation.lon]}
             icon={userIcon}
           >
-            <Popup>Your Location</Popup>
+            <Popup>
+              Your Location
+              <br />
+              Accuracy: {Math.round(liveLocation.accuracy)}m
+            </Popup>
           </Marker>
 
-          <Circle center={[userLocation.lat, userLocation.lon]} radius={100} />
+          <Circle center={[liveLocation.lat, liveLocation.lon]} radius={100} />
         </>
-      )}
-      {/* Live location */}
-      {liveLocation && (
-        <Marker position={[liveLocation.lat, liveLocation.lon]} icon={userIcon}>
-          <Popup>
-            Live Location
-            <br />
-            Accuracy: {Math.round(liveLocation.accuracy)}m
-          </Popup>
-        </Marker>
       )}
 
       {/* Audited bus stops */}
@@ -95,7 +88,6 @@ export default function BusMap({
               },
             }}
           >
-            
             <Popup>
               <strong>{audit.Bus_Stop_Name}</strong>
               <br />

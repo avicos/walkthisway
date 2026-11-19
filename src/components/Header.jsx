@@ -7,7 +7,7 @@ export default function Header({ audits, onSelect, auditCount }) {
 
   const results = audits
     .filter((audit) =>
-      audit.Bus_Stop_Name?.toLowerCase().includes(query.toLowerCase())
+      audit.Bus_Stop_Name?.toLowerCase().includes(query.toLowerCase()),
     )
     .slice(0, 8);
 
@@ -18,11 +18,7 @@ export default function Header({ audits, onSelect, auditCount }) {
 
   return (
     <header className={styles.header}>
-      <img
-        src="/logo1.png"
-        alt="Walk This Way"
-        className={styles.logo}
-      />
+      <img src="/logo1.png" alt="Walk This Way" className={styles.logo} />
 
       <div className={styles.rightSection}>
         <div
@@ -56,9 +52,7 @@ export default function Header({ audits, onSelect, auditCount }) {
               )}
 
               {query && results.length === 0 && (
-                <div className={styles.noResults}>
-                  No audited stops found
-                </div>
+                <div className={styles.noResults}>No audited stops found</div>
               )}
             </div>
           )}
@@ -79,7 +73,11 @@ export default function Header({ audits, onSelect, auditCount }) {
         </div>
 
         <div className={styles.auditCount}>
-          <span className={styles.auditIcon}>🚌</span>
+          <img
+            src="/bus-stop.png"
+            alt="Audited bus stops"
+            className={styles.auditIcon}
+          />
           <span>{auditCount}</span>
         </div>
       </div>

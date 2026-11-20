@@ -47,6 +47,39 @@
   font-size: 14px;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.downloadButton {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+
+  background: #2563eb;
+  color: white;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.downloadButton:hover {
+  background: #1d4ed8;
+}
+
+.downloadButton:active {
+  transform: scale(0.98);
+}
+
 .closeButton {
   width: 42px;
   height: 42px;

@@ -18,7 +18,14 @@ export default function Header({ audits, onSelect, auditCount }) {
 
   return (
     <header className={styles.header}>
+      <a
+        href="https://www.instagram.com/walkthisway.hyd/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.logoLink}
+      >
       <img src="/logo1.png" alt="Walk This Way" className={styles.logo} />
+      </a>
 
       <div className={styles.rightSection}>
         <div

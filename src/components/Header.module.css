@@ -19,15 +19,19 @@
   bottom: 24px;
 }
 
-.logo {
+.logoLink {
   position: absolute;
   top: 12px;
-  left: 12px;
+  left: 16px;
 
+  display: block;
+  pointer-events: auto;
+}
+
+.logo {
+  display: block;
   width: 70px;
   height: 70px;
-
-  pointer-events: auto;
 }
 
 .rightSection {

@@ -1,11 +1,13 @@
 import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
 
 import { userIcon, auditedStopIcon } from "../utils/icons";
+import styles from "./BusMap.module.css";
 
 import FlyToStop from "./FlyToStop";
 import FlyToUser from "./FlyToUser";
 import RecenterMap from "./RecenterMap";
 import MapClickHandler from "./MapClickHandler";
+import { getStatus } from "../utils/status";
 
 export default function BusMap({
   selectedStop,
@@ -18,6 +20,16 @@ export default function BusMap({
   recenterRequest,
   liveLocation,
 }) {
+  function AuditValue({ value }) {
+    const { label, status } = getStatus(value);
+
+    return (
+      <span className={`${styles.auditValue} ${styles[status]}`}>
+        {label}
+      </span>
+    );
+  }
+
   return (
     <MapContainer
       center={[17.45, 78.38]}
@@ -62,7 +74,10 @@ export default function BusMap({
             </Popup>
           </Marker>
 
-          <Circle center={[liveLocation.lat, liveLocation.lon]} radius={100} />
+          <Circle
+            center={[liveLocation.lat, liveLocation.lon]}
+            radius={100}
+          />
         </>
       )}
 
@@ -89,33 +104,96 @@ export default function BusMap({
             }}
           >
             <Popup>
-              <strong>{audit.Bus_Stop_Name}</strong>
-              <br />
-              Roof: {audit.roof || "—"}
-              <br />
-              Lighting: {audit.lighting || "—"}
-              <br />
-              Seating: {audit.Seating || "—"}
-              <br />
-              Route Map: {audit.route_map || "—"}
-              <br />
-              Schedule: {audit.schedule || "—"}
+              <div className={styles.auditPopup}>
+                <h3>{audit.Bus_Stop_Name}</h3>
+
+                <div className={styles.auditRow}>
+                  <img
+                    src="/roof.png"
+                    alt=""
+                    className={styles.auditIcon}
+                  />
+
+                  <span className={styles.auditLabel}>
+                    Roof
+                  </span>
+
+                  <AuditValue value={audit.roof} />
+                </div>
+
+                <div className={styles.auditRow}>
+                  <img
+                    src="/street-light.png"
+                    alt=""
+                    className={styles.auditIcon}
+                  />
+
+                  <span className={styles.auditLabel}>
+                    Lighting
+                  </span>
+
+                  <AuditValue value={audit.lighting} />
+                </div>
+
+                <div className={styles.auditRow}>
+                  <img
+                    src="/bench.png"
+                    alt=""
+                    className={styles.auditIcon}
+                  />
+
+                  <span className={styles.auditLabel}>
+                    Seating
+                  </span>
+
+                  <AuditValue value={audit.Seating} />
+                </div>
+
+                <div className={styles.auditRow}>
+                  <img
+                    src="/route.png"
+                    alt=""
+                    className={styles.auditIcon}
+                  />
+
+                  <span className={styles.auditLabel}>
+                    Route map
+                  </span>
+
+                  <AuditValue value={audit.route_map} />
+                </div>
+
+                <div className={styles.auditRow}>
+                  <img
+                    src="/project.png"
+                    alt=""
+                    className={styles.auditIcon}
+                  />
+
+                  <span className={styles.auditLabel}>
+                    Schedule
+                  </span>
+
+                  <AuditValue value={audit.schedule} />
+                </div>
+              </div>
             </Popup>
           </Marker>
         );
       })}
 
       {/* Marker for a newly added stop */}
-      {selectedStop?.stop_lat != null && selectedStop?.stop_lon != null && (
-        <Marker
-          position={[
-            Number(selectedStop.stop_lat),
-            Number(selectedStop.stop_lon),
-          ]}
-        >
-          <Popup>New Bus Stop</Popup>
-        </Marker>
-      )}
+      {selectedStop?.stop_lat != null &&
+        selectedStop?.stop_lon != null && (
+          <Marker
+            position={[
+              Number(selectedStop.stop_lat),
+              Number(selectedStop.stop_lon),
+            ]}
+          >
+            <Popup>New Bus Stop</Popup>
+          </Marker>
+        )}
     </MapContainer>
   );
 }

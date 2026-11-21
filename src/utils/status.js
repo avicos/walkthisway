@@ -6,7 +6,7 @@ const statusMap = {
   },
 
   usable_seating: {
-    label: "Usable seating",
+    label: "Usable",
     status: "positive",
   },
 
@@ -37,12 +37,12 @@ const statusMap = {
   },
 
   lighting_from_surroundings: {
-    label: "Lighting from surroundings",
+    label: "From surroundings",
     status: "partial",
   },
 
   lighting_from_billboards: {
-    label: "Lighting from billboards",
+    label: "From billboards",
     status: "partial",
   },
 
@@ -53,17 +53,17 @@ const statusMap = {
   },
 
   no_seating: {
-    label: "No seating",
+    label: "No",
     status: "negative",
   },
 
   no_light: {
-    label: "No light",
+    label: "No",
     status: "negative",
   },
 
   broken_seating_hostile_seating: {
-    label: "Broken / hostile seating",
+    label: "Broken/hostile",
     status: "negative",
   },
 };
